@@ -1,0 +1,52 @@
+﻿<Window x:Class="Projet.RaspisanieOSN"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projet"
+        mc:Ignorable="d"
+        Title="RaspisanieOSN" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Key="RoundedWindowStyle" TargetType="Window">
+            <Setter Property="WindowChrome.WindowChrome">
+                <Setter.Value>
+                    <WindowChrome CaptionHeight="30" CornerRadius="10" GlassFrameThickness="0" ResizeBorderThickness="6" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <FontFamily x:Key="MontserratSemiBold">pack://siteoforigin:,,,/Montserrat-SemiBold.ttf#Montserrat SemiBold</FontFamily>
+
+
+
+    </Window.Resources>
+    <Window.Style>
+        <StaticResource ResourceKey="RoundedWindowStyle" />
+    </Window.Style>
+    <Grid Background="#333" >
+        <Label x:Name="nameday" Content="" Foreground="#FFFFFF" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Top" Height="58" Width="302" Margin="0,10,0,0" FontFamily="{StaticResource MontserratSemiBold}"/>
+        <DataGrid x:Name="datas" FontSize="15" AutoGenerateColumns="False" Background="#66D0AA" GridLinesVisibility="None" RowHeaderWidth="0" CanUserResizeColumns="False" Margin="10,90,10,90">
+            <DataGrid.FontFamily>
+                <StaticResource ResourceKey="MontserratSemiBold" />
+            </DataGrid.FontFamily>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Начало" Width="*" Binding="{Binding Nachalo}" />
+                <DataGridTextColumn Header="Пара" Width="*" Binding="{Binding Para}" />
+                <DataGridTextColumn Header="Предмет" Width="*" Binding="{Binding Predmet}" />
+                <DataGridTextColumn Header="Преподаватель" Width="*" Binding="{Binding Prepodavatel}" />
+                <DataGridTextColumn Header="Кабинет" Width="*" Binding="{Binding Kabinet}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        
+        <Button Content="←"   HorizontalAlignment="Left" Margin="10,361,0,0" VerticalAlignment="Top" Width="92" Height="63" Background="#FFFFFF" Foreground="#333" FontSize="50" Click="Button_Click">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.FontFamily>
+                <StaticResource ResourceKey="MontserratSemiBold" />
+            </Button.FontFamily>
+        </Button>
+    </Grid>
+</Window>

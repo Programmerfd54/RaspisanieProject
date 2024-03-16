@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="37f15fee296d4200aefaf55adf77b84c" Name="Diagram1" ZoomLevel="47">
+        <EntityTypeShape EntityType="user215_dbModel.KUR_Gruppa" Width="1.5" PointX="0.875" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="user215_dbModel.KUR_Otdelenie" Width="1.5" PointX="0.5" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="user215_dbModel.KUR_pred" Width="1.5" PointX="10.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="user215_dbModel.KUR_Prep" Width="1.5" PointX="8.875" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="user215_dbModel.KUR_RASPISANIEe" Width="1.5" PointX="2" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="user215_dbModel.KUR_Stud" Width="1.5" PointX="10.125" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="user215_dbModel.KUR_Suh" Width="1.5" PointX="4.125" PointY="4.125" IsExpanded="true" />
+        <AssociationConnector Association="user215_dbModel.FK_KUR_Gruppa_KUR_Otdelenie" ManuallyRouted="false" />
+        <AssociationConnector Association="user215_dbModel.FK_KUR_Suh_KUR_Otdelenie1" ManuallyRouted="false" />
+        <AssociationConnector Association="user215_dbModel.FK_KUR_Prep_KUR_pred" ManuallyRouted="false" />
+        <AssociationConnector Association="user215_dbModel.FK_KUR_Suh_KUR_Prep" ManuallyRouted="false" />
+        <AssociationConnector Association="user215_dbModel.FK_KUR_Suh_KUR_RASPISANIEe" ManuallyRouted="false" />
+        <AssociationConnector Association="user215_dbModel.FK_KUR_Suh_KUR_Stud1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,472 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище user215_dbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="KUR_Gruppa">
+          <Key>
+            <PropertyRef Name="id_Gruppa" />
+          </Key>
+          <Property Name="id_Gruppa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naim" Type="varchar" MaxLength="55" />
+          <Property Name="id_otdel" Type="int" />
+        </EntityType>
+        <EntityType Name="KUR_Otdelenie">
+          <Key>
+            <PropertyRef Name="id_otdelenie" />
+          </Key>
+          <Property Name="id_otdelenie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naim" Type="varchar" MaxLength="55" />
+        </EntityType>
+        <EntityType Name="KUR_pred">
+          <Key>
+            <PropertyRef Name="id_predmet" />
+          </Key>
+          <Property Name="id_predmet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naim" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="KUR_Prep">
+          <Key>
+            <PropertyRef Name="id_Prep" />
+          </Key>
+          <Property Name="id_Prep" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIO" Type="varchar" MaxLength="55" />
+          <Property Name="Predmet" Type="varchar" MaxLength="55" />
+          <Property Name="logi" Type="varchar" MaxLength="55" />
+          <Property Name="pass" Type="varchar" MaxLength="55" />
+          <Property Name="id_predmet" Type="int" />
+        </EntityType>
+        <EntityType Name="KUR_RASPISANIEe">
+          <Key>
+            <PropertyRef Name="id_raspisanie" />
+          </Key>
+          <Property Name="id_raspisanie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_dnya" Type="int" Nullable="false" />
+          <Property Name="Nachalo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Para" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_prepod" Type="int" Nullable="false" />
+          <Property Name="id_predmet" Type="int" Nullable="false" />
+          <Property Name="Kabinet" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_groupp" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KUR_Stud">
+          <Key>
+            <PropertyRef Name="id_stud" />
+          </Key>
+          <Property Name="id_stud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIO" Type="varchar" MaxLength="55" />
+          <Property Name="logi" Type="varchar" MaxLength="55" />
+          <Property Name="pass" Type="varchar" MaxLength="55" />
+          <Property Name="id_otdelenie" Type="int" />
+          <Property Name="id_group" Type="int" />
+        </EntityType>
+        <EntityType Name="KUR_Suh">
+          <Key>
+            <PropertyRef Name="id_suh" />
+          </Key>
+          <Property Name="id_suh" Type="int" Nullable="false" />
+          <Property Name="id_stud" Type="int" />
+          <Property Name="id_prepoda" Type="int" />
+          <Property Name="id_Raspisanie" Type="int" />
+          <Property Name="id_otd" Type="int" />
+        </EntityType>
+        <Association Name="FK_KUR_Gruppa_KUR_Otdelenie">
+          <End Role="KUR_Otdelenie" Type="Self.KUR_Otdelenie" Multiplicity="0..1" />
+          <End Role="KUR_Gruppa" Type="Self.KUR_Gruppa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KUR_Otdelenie">
+              <PropertyRef Name="id_otdelenie" />
+            </Principal>
+            <Dependent Role="KUR_Gruppa">
+              <PropertyRef Name="id_otdel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KUR_Prep_KUR_pred">
+          <End Role="KUR_pred" Type="Self.KUR_pred" Multiplicity="0..1" />
+          <End Role="KUR_Prep" Type="Self.KUR_Prep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KUR_pred">
+              <PropertyRef Name="id_predmet" />
+            </Principal>
+            <Dependent Role="KUR_Prep">
+              <PropertyRef Name="id_predmet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KUR_Suh_KUR_Otdelenie1">
+          <End Role="KUR_Otdelenie" Type="Self.KUR_Otdelenie" Multiplicity="0..1" />
+          <End Role="KUR_Suh" Type="Self.KUR_Suh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KUR_Otdelenie">
+              <PropertyRef Name="id_otdelenie" />
+            </Principal>
+            <Dependent Role="KUR_Suh">
+              <PropertyRef Name="id_otd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KUR_Suh_KUR_Prep">
+          <End Role="KUR_Prep" Type="Self.KUR_Prep" Multiplicity="0..1" />
+          <End Role="KUR_Suh" Type="Self.KUR_Suh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KUR_Prep">
+              <PropertyRef Name="id_Prep" />
+            </Principal>
+            <Dependent Role="KUR_Suh">
+              <PropertyRef Name="id_prepoda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KUR_Suh_KUR_RASPISANIEe">
+          <End Role="KUR_RASPISANIEe" Type="Self.KUR_RASPISANIEe" Multiplicity="0..1" />
+          <End Role="KUR_Suh" Type="Self.KUR_Suh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KUR_RASPISANIEe">
+              <PropertyRef Name="id_raspisanie" />
+            </Principal>
+            <Dependent Role="KUR_Suh">
+              <PropertyRef Name="id_Raspisanie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KUR_Suh_KUR_Stud1">
+          <End Role="KUR_Stud" Type="Self.KUR_Stud" Multiplicity="0..1" />
+          <End Role="KUR_Suh" Type="Self.KUR_Suh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KUR_Stud">
+              <PropertyRef Name="id_stud" />
+            </Principal>
+            <Dependent Role="KUR_Suh">
+              <PropertyRef Name="id_stud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище user215_dbModelContainer">
+          <EntitySet Name="KUR_Gruppa" EntityType="Self.KUR_Gruppa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KUR_Otdelenie" EntityType="Self.KUR_Otdelenie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KUR_pred" EntityType="Self.KUR_pred" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KUR_Prep" EntityType="Self.KUR_Prep" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KUR_RASPISANIEe" EntityType="Self.KUR_RASPISANIEe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KUR_Stud" EntityType="Self.KUR_Stud" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KUR_Suh" EntityType="Self.KUR_Suh" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_KUR_Gruppa_KUR_Otdelenie" Association="Self.FK_KUR_Gruppa_KUR_Otdelenie">
+            <End Role="KUR_Otdelenie" EntitySet="KUR_Otdelenie" />
+            <End Role="KUR_Gruppa" EntitySet="KUR_Gruppa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KUR_Prep_KUR_pred" Association="Self.FK_KUR_Prep_KUR_pred">
+            <End Role="KUR_pred" EntitySet="KUR_pred" />
+            <End Role="KUR_Prep" EntitySet="KUR_Prep" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KUR_Suh_KUR_Otdelenie1" Association="Self.FK_KUR_Suh_KUR_Otdelenie1">
+            <End Role="KUR_Otdelenie" EntitySet="KUR_Otdelenie" />
+            <End Role="KUR_Suh" EntitySet="KUR_Suh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KUR_Suh_KUR_Prep" Association="Self.FK_KUR_Suh_KUR_Prep">
+            <End Role="KUR_Prep" EntitySet="KUR_Prep" />
+            <End Role="KUR_Suh" EntitySet="KUR_Suh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KUR_Suh_KUR_RASPISANIEe" Association="Self.FK_KUR_Suh_KUR_RASPISANIEe">
+            <End Role="KUR_RASPISANIEe" EntitySet="KUR_RASPISANIEe" />
+            <End Role="KUR_Suh" EntitySet="KUR_Suh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KUR_Suh_KUR_Stud1" Association="Self.FK_KUR_Suh_KUR_Stud1">
+            <End Role="KUR_Stud" EntitySet="KUR_Stud" />
+            <End Role="KUR_Suh" EntitySet="KUR_Suh" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="user215_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="KUR_Gruppa">
+          <Key>
+            <PropertyRef Name="id_Gruppa" />
+          </Key>
+          <Property Name="id_Gruppa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="naim" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="id_otdel" Type="Int32" />
+          <NavigationProperty Name="KUR_Otdelenie" Relationship="Self.FK_KUR_Gruppa_KUR_Otdelenie" FromRole="KUR_Gruppa" ToRole="KUR_Otdelenie" />
+        </EntityType>
+        <EntityType Name="KUR_Otdelenie">
+          <Key>
+            <PropertyRef Name="id_otdelenie" />
+          </Key>
+          <Property Name="id_otdelenie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="naim" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="KUR_Gruppa" Relationship="Self.FK_KUR_Gruppa_KUR_Otdelenie" FromRole="KUR_Otdelenie" ToRole="KUR_Gruppa" />
+          <NavigationProperty Name="KUR_Suh" Relationship="Self.FK_KUR_Suh_KUR_Otdelenie1" FromRole="KUR_Otdelenie" ToRole="KUR_Suh" />
+        </EntityType>
+        <EntityType Name="KUR_pred">
+          <Key>
+            <PropertyRef Name="id_predmet" />
+          </Key>
+          <Property Name="id_predmet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="naim" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="KUR_Prep" Relationship="Self.FK_KUR_Prep_KUR_pred" FromRole="KUR_pred" ToRole="KUR_Prep" />
+        </EntityType>
+        <EntityType Name="KUR_Prep">
+          <Key>
+            <PropertyRef Name="id_Prep" />
+          </Key>
+          <Property Name="id_Prep" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="Predmet" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="logi" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="pass" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="id_predmet" Type="Int32" />
+          <NavigationProperty Name="KUR_pred" Relationship="Self.FK_KUR_Prep_KUR_pred" FromRole="KUR_Prep" ToRole="KUR_pred" />
+          <NavigationProperty Name="KUR_Suh" Relationship="Self.FK_KUR_Suh_KUR_Prep" FromRole="KUR_Prep" ToRole="KUR_Suh" />
+        </EntityType>
+        <EntityType Name="KUR_RASPISANIEe">
+          <Key>
+            <PropertyRef Name="id_raspisanie" />
+          </Key>
+          <Property Name="id_raspisanie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_dnya" Type="Int32" Nullable="false" />
+          <Property Name="Nachalo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Para" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_prepod" Type="Int32" Nullable="false" />
+          <Property Name="id_predmet" Type="Int32" Nullable="false" />
+          <Property Name="Kabinet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_groupp" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="KUR_Suh" Relationship="Self.FK_KUR_Suh_KUR_RASPISANIEe" FromRole="KUR_RASPISANIEe" ToRole="KUR_Suh" />
+        </EntityType>
+        <EntityType Name="KUR_Stud">
+          <Key>
+            <PropertyRef Name="id_stud" />
+          </Key>
+          <Property Name="id_stud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="logi" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="pass" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="id_otdelenie" Type="Int32" />
+          <Property Name="id_group" Type="Int32" />
+          <NavigationProperty Name="KUR_Suh" Relationship="Self.FK_KUR_Suh_KUR_Stud1" FromRole="KUR_Stud" ToRole="KUR_Suh" />
+        </EntityType>
+        <EntityType Name="KUR_Suh">
+          <Key>
+            <PropertyRef Name="id_suh" />
+          </Key>
+          <Property Name="id_suh" Type="Int32" Nullable="false" />
+          <Property Name="id_stud" Type="Int32" />
+          <Property Name="id_prepoda" Type="Int32" />
+          <Property Name="id_Raspisanie" Type="Int32" />
+          <Property Name="id_otd" Type="Int32" />
+          <NavigationProperty Name="KUR_Otdelenie" Relationship="Self.FK_KUR_Suh_KUR_Otdelenie1" FromRole="KUR_Suh" ToRole="KUR_Otdelenie" />
+          <NavigationProperty Name="KUR_Prep" Relationship="Self.FK_KUR_Suh_KUR_Prep" FromRole="KUR_Suh" ToRole="KUR_Prep" />
+          <NavigationProperty Name="KUR_RASPISANIEe" Relationship="Self.FK_KUR_Suh_KUR_RASPISANIEe" FromRole="KUR_Suh" ToRole="KUR_RASPISANIEe" />
+          <NavigationProperty Name="KUR_Stud" Relationship="Self.FK_KUR_Suh_KUR_Stud1" FromRole="KUR_Suh" ToRole="KUR_Stud" />
+        </EntityType>
+        <Association Name="FK_KUR_Gruppa_KUR_Otdelenie">
+          <End Role="KUR_Otdelenie" Type="Self.KUR_Otdelenie" Multiplicity="0..1" />
+          <End Role="KUR_Gruppa" Type="Self.KUR_Gruppa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KUR_Otdelenie">
+              <PropertyRef Name="id_otdelenie" />
+            </Principal>
+            <Dependent Role="KUR_Gruppa">
+              <PropertyRef Name="id_otdel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KUR_Suh_KUR_Otdelenie1">
+          <End Role="KUR_Otdelenie" Type="Self.KUR_Otdelenie" Multiplicity="0..1" />
+          <End Role="KUR_Suh" Type="Self.KUR_Suh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KUR_Otdelenie">
+              <PropertyRef Name="id_otdelenie" />
+            </Principal>
+            <Dependent Role="KUR_Suh">
+              <PropertyRef Name="id_otd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KUR_Prep_KUR_pred">
+          <End Role="KUR_pred" Type="Self.KUR_pred" Multiplicity="0..1" />
+          <End Role="KUR_Prep" Type="Self.KUR_Prep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KUR_pred">
+              <PropertyRef Name="id_predmet" />
+            </Principal>
+            <Dependent Role="KUR_Prep">
+              <PropertyRef Name="id_predmet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KUR_Suh_KUR_Prep">
+          <End Role="KUR_Prep" Type="Self.KUR_Prep" Multiplicity="0..1" />
+          <End Role="KUR_Suh" Type="Self.KUR_Suh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KUR_Prep">
+              <PropertyRef Name="id_Prep" />
+            </Principal>
+            <Dependent Role="KUR_Suh">
+              <PropertyRef Name="id_prepoda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KUR_Suh_KUR_RASPISANIEe">
+          <End Role="KUR_RASPISANIEe" Type="Self.KUR_RASPISANIEe" Multiplicity="0..1" />
+          <End Role="KUR_Suh" Type="Self.KUR_Suh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KUR_RASPISANIEe">
+              <PropertyRef Name="id_raspisanie" />
+            </Principal>
+            <Dependent Role="KUR_Suh">
+              <PropertyRef Name="id_Raspisanie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KUR_Suh_KUR_Stud1">
+          <End Role="KUR_Stud" Type="Self.KUR_Stud" Multiplicity="0..1" />
+          <End Role="KUR_Suh" Type="Self.KUR_Suh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KUR_Stud">
+              <PropertyRef Name="id_stud" />
+            </Principal>
+            <Dependent Role="KUR_Suh">
+              <PropertyRef Name="id_stud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="user215_dbEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="KUR_Gruppa" EntityType="Self.KUR_Gruppa" />
+          <EntitySet Name="KUR_Otdelenie" EntityType="Self.KUR_Otdelenie" />
+          <EntitySet Name="KUR_pred" EntityType="Self.KUR_pred" />
+          <EntitySet Name="KUR_Prep" EntityType="Self.KUR_Prep" />
+          <EntitySet Name="KUR_RASPISANIEe" EntityType="Self.KUR_RASPISANIEe" />
+          <EntitySet Name="KUR_Stud" EntityType="Self.KUR_Stud" />
+          <EntitySet Name="KUR_Suh" EntityType="Self.KUR_Suh" />
+          <AssociationSet Name="FK_KUR_Gruppa_KUR_Otdelenie" Association="Self.FK_KUR_Gruppa_KUR_Otdelenie">
+            <End Role="KUR_Otdelenie" EntitySet="KUR_Otdelenie" />
+            <End Role="KUR_Gruppa" EntitySet="KUR_Gruppa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KUR_Suh_KUR_Otdelenie1" Association="Self.FK_KUR_Suh_KUR_Otdelenie1">
+            <End Role="KUR_Otdelenie" EntitySet="KUR_Otdelenie" />
+            <End Role="KUR_Suh" EntitySet="KUR_Suh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KUR_Prep_KUR_pred" Association="Self.FK_KUR_Prep_KUR_pred">
+            <End Role="KUR_pred" EntitySet="KUR_pred" />
+            <End Role="KUR_Prep" EntitySet="KUR_Prep" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KUR_Suh_KUR_Prep" Association="Self.FK_KUR_Suh_KUR_Prep">
+            <End Role="KUR_Prep" EntitySet="KUR_Prep" />
+            <End Role="KUR_Suh" EntitySet="KUR_Suh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KUR_Suh_KUR_RASPISANIEe" Association="Self.FK_KUR_Suh_KUR_RASPISANIEe">
+            <End Role="KUR_RASPISANIEe" EntitySet="KUR_RASPISANIEe" />
+            <End Role="KUR_Suh" EntitySet="KUR_Suh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KUR_Suh_KUR_Stud1" Association="Self.FK_KUR_Suh_KUR_Stud1">
+            <End Role="KUR_Stud" EntitySet="KUR_Stud" />
+            <End Role="KUR_Suh" EntitySet="KUR_Suh" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище user215_dbModelContainer" CdmEntityContainer="user215_dbEntities2">
+          <EntitySetMapping Name="KUR_Gruppa">
+            <EntityTypeMapping TypeName="user215_dbModel.KUR_Gruppa">
+              <MappingFragment StoreEntitySet="KUR_Gruppa">
+                <ScalarProperty Name="id_Gruppa" ColumnName="id_Gruppa" />
+                <ScalarProperty Name="naim" ColumnName="naim" />
+                <ScalarProperty Name="id_otdel" ColumnName="id_otdel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KUR_Otdelenie">
+            <EntityTypeMapping TypeName="user215_dbModel.KUR_Otdelenie">
+              <MappingFragment StoreEntitySet="KUR_Otdelenie">
+                <ScalarProperty Name="id_otdelenie" ColumnName="id_otdelenie" />
+                <ScalarProperty Name="naim" ColumnName="naim" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KUR_pred">
+            <EntityTypeMapping TypeName="user215_dbModel.KUR_pred">
+              <MappingFragment StoreEntitySet="KUR_pred">
+                <ScalarProperty Name="id_predmet" ColumnName="id_predmet" />
+                <ScalarProperty Name="naim" ColumnName="naim" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KUR_Prep">
+            <EntityTypeMapping TypeName="user215_dbModel.KUR_Prep">
+              <MappingFragment StoreEntitySet="KUR_Prep">
+                <ScalarProperty Name="id_Prep" ColumnName="id_Prep" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="Predmet" ColumnName="Predmet" />
+                <ScalarProperty Name="logi" ColumnName="logi" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="id_predmet" ColumnName="id_predmet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KUR_RASPISANIEe">
+            <EntityTypeMapping TypeName="user215_dbModel.KUR_RASPISANIEe">
+              <MappingFragment StoreEntitySet="KUR_RASPISANIEe">
+                <ScalarProperty Name="id_raspisanie" ColumnName="id_raspisanie" />
+                <ScalarProperty Name="id_dnya" ColumnName="id_dnya" />
+                <ScalarProperty Name="Nachalo" ColumnName="Nachalo" />
+                <ScalarProperty Name="Para" ColumnName="Para" />
+                <ScalarProperty Name="id_prepod" ColumnName="id_prepod" />
+                <ScalarProperty Name="id_predmet" ColumnName="id_predmet" />
+                <ScalarProperty Name="Kabinet" ColumnName="Kabinet" />
+                <ScalarProperty Name="id_groupp" ColumnName="id_groupp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KUR_Stud">
+            <EntityTypeMapping TypeName="user215_dbModel.KUR_Stud">
+              <MappingFragment StoreEntitySet="KUR_Stud">
+                <ScalarProperty Name="id_stud" ColumnName="id_stud" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="logi" ColumnName="logi" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="id_otdelenie" ColumnName="id_otdelenie" />
+                <ScalarProperty Name="id_group" ColumnName="id_group" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KUR_Suh">
+            <EntityTypeMapping TypeName="user215_dbModel.KUR_Suh">
+              <MappingFragment StoreEntitySet="KUR_Suh">
+                <ScalarProperty Name="id_suh" ColumnName="id_suh" />
+                <ScalarProperty Name="id_stud" ColumnName="id_stud" />
+                <ScalarProperty Name="id_prepoda" ColumnName="id_prepoda" />
+                <ScalarProperty Name="id_Raspisanie" ColumnName="id_Raspisanie" />
+                <ScalarProperty Name="id_otd" ColumnName="id_otd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,99 @@
+﻿<Window x:Class="Projet.Prepod.RaspisPrepod"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projet.Prepod"
+        mc:Ignorable="d"
+        Title="RaspisPrepod" Height="466.019" Width="800">
+    <Window.Resources>
+        <Style x:Key="RoundedWindowStyle" TargetType="Window">
+            <Setter Property="WindowChrome.WindowChrome">
+                <Setter.Value>
+                    <WindowChrome CaptionHeight="30" CornerRadius="10" GlassFrameThickness="0" ResizeBorderThickness="6" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <FontFamily x:Key="MontserratSemiBold">pack://siteoforigin:,,,/Montserrat-SemiBold.ttf#Montserrat SemiBold</FontFamily>
+
+    </Window.Resources>
+    <Window.Style>
+        <StaticResource ResourceKey="RoundedWindowStyle" />
+    </Window.Style>
+    <Grid Background="#333" >
+        <Label Content="Расписание" Foreground="#FFFFFF" FontSize="40" HorizontalAlignment="Left" VerticalAlignment="Top" Height="58" Width="302" Margin="278,10,0,0" FontFamily="{StaticResource MontserratSemiBold}"/>
+        <Button  Content="Понедельник" HorizontalAlignment="Left" Margin="10,154,0,0" VerticalAlignment="Top" Width="244"  Background="#FFE8B5" Foreground="#333" Height="63" FontSize="30" RenderTransformOrigin="0.514,1.012" Click="Button_Click"  >
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.FontFamily>
+                <StaticResource ResourceKey="MontserratSemiBold" />
+            </Button.FontFamily>
+        </Button>
+        <Label Content="Выберите день" Foreground="#FFFFFF" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Top" Height="41" Width="279" Margin="10,108,0,0" FontFamily="{StaticResource MontserratSemiBold}"/>
+        <Button  Content="Вторник" HorizontalAlignment="Center" Margin="0,154,0,0" VerticalAlignment="Top" Width="244"  Background="#9256F3" Foreground="#FFF" Height="63" FontSize="30" RenderTransformOrigin="0.514,1.012" Click="Button_Click_1"  >
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.FontFamily>
+                <StaticResource ResourceKey="MontserratSemiBold" />
+            </Button.FontFamily>
+        </Button>
+        <Button  Content="Среда" HorizontalAlignment="Left" Margin="546,154,0,0" VerticalAlignment="Top" Width="244"  Background="#FFE8B5" Foreground="#333" Height="63" FontSize="30" RenderTransformOrigin="0.514,1.012" Click="Button_Click_2"  >
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.FontFamily>
+                <StaticResource ResourceKey="MontserratSemiBold" />
+            </Button.FontFamily>
+        </Button>
+        <Button  Content="Четверг" HorizontalAlignment="Left" Margin="10,256,0,0" VerticalAlignment="Top" Width="244"  Background="#9256F3" Foreground="#FFF" Height="63" FontSize="30" RenderTransformOrigin="0.514,1.012" Click="Button_Click_3"  >
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.FontFamily>
+                <StaticResource ResourceKey="MontserratSemiBold" />
+            </Button.FontFamily>
+        </Button>
+        <Button  Content="Пятница" HorizontalAlignment="Center" Margin="0,256,0,0" VerticalAlignment="Top" Width="244"  Background="#FFE8B5" Foreground="#333" Height="63" FontSize="30" RenderTransformOrigin="0.514,1.012" Click="Button_Click_4"  >
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.FontFamily>
+                <StaticResource ResourceKey="MontserratSemiBold" />
+            </Button.FontFamily>
+        </Button>
+        <Button  Content="Суббота" HorizontalAlignment="Left" Margin="546,256,0,0" VerticalAlignment="Top" Width="244"  Background="#9256F3" Foreground="#FFF" Height="63" FontSize="30" RenderTransformOrigin="0.514,1.012" Click="Button_Click_5"  >
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.FontFamily>
+                <StaticResource ResourceKey="MontserratSemiBold" />
+            </Button.FontFamily>
+        </Button>
+        <Button Content="←"   HorizontalAlignment="Left" Margin="10,361,0,0" VerticalAlignment="Top" Width="92" Height="63" Background="#FFFFFF" Foreground="#333" FontSize="50" Click="Button_Click_6">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.FontFamily>
+                <StaticResource ResourceKey="MontserratSemiBold" />
+            </Button.FontFamily>
+        </Button>
+
+    </Grid>
+</Window>
+    
